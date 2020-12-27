@@ -30,14 +30,15 @@ if(empCheck == IS_ABSENT){
         }
     }
     const WORKING_DAYS_IN_MONTH = 20;
-
-	let empHours = 0;
-	let employeeCheck = Math.floor(Math.random() * 10 % 3);
-	for (let day = 1; day <= 20; day++) {
+	const MAX_HOURS_IN_MONTH = 160;
+	empHours = 0;
+	let workingDays = 0;
+	while ((workingDays < WORKING_DAYS_IN_MONTH) && empHours <= MAX_HOURS_IN_MONTH) {
+		workingDays++;
 		let employeeCheck = Math.floor(Math.random() * 10 % 3);
 		empHours += getWorkingHours(employeeCheck);
 	}
 
 	let empWage = empHours * WAGE_PER_HOUR;
-	console.log('Total Emp Hours ' + empHours + ' Employee Monthly Wage ' + empWage);
+	console.log('Total Working Days ' + workingDays + ' Total Emp Hours ' + empHours + ' Employee Monthly Wage ' + empWage);
 }
