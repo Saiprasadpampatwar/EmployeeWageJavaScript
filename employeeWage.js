@@ -26,20 +26,31 @@ function calcDailyWage(empHrs) {
 }
 const WORKING_DAYS_IN_MONTH = 20;
 const MAX_HOURS_IN_MONTH = 160;
-empHours = 0;
+let empDailyWageMap = new Map();
+let empDailyHrsMap = new Map();
+let empHours = 0;
 let totalEmphrs = 0;
 let workingDays = 0;
 let empDailyWageArr = new Array();
+
+function totalWages(totalWage, dailyWage) {
+    return totalWage + dailyWage;
+}
+
+
 while ((workingDays < WORKING_DAYS_IN_MONTH) && empHours <= MAX_HOURS_IN_MONTH) {
     workingDays++;
     let employeeCheck = Math.floor(Math.random() * 10 % 3);
     let empHours = getWorkingHours(employeeCheck);
     totalEmphrs+=empHours;
     empDailyWageArr.push(calcDailyWage(empHours));
+    empDailyHrsMap.set(workingDays, empHours);
+    empDailyWageMap.set(workingDays, calcDailyWage(empHours));
 }
 
-let empWage = calcDailyWage(totalEmphrs);
-console.log('UC-6 Total Working Days ' + workingDays + ' Total Emp Hours ' + totalEmphrs + ' Employee Monthly Wage ' + empWage);
+console.log(empDailyWageMap);
+console.log('UC8 Emp Wage Map totalHours: ' + Array.from(empDailyWageMap.values()).reduce(totalWages, 0));
+
 
 
 
