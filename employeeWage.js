@@ -78,5 +78,30 @@ console.log(' FullTime Working Days: ' + fullWorkingDays);
 console.log(' PartTime Working Days: ' + partWorkingDays);
 console.log(' Non Working Days: ' + nonWorkingDays);
 
+// UC10 - Objects 
+
+let empDailyHoursAndWageArr = new Array();
+let totalEmpHours = 0;
+let totalWorkingDays = 0;
+
+while ((totalWorkingDays < WORKING_DAYS_IN_MONTH) && empHours <= MAX_HOURS_IN_MONTH) {
+    totalWorkingDays++;
+    let employeeCheck = Math.floor(Math.random() * 10 % 3);
+    let empHours = getWorkingHours(employeeCheck);
+    totalEmpHours += empHours;
+    empDailyHoursAndWageArr.push(
+        {
+            dayNum: totalWorkingDays,
+            dailyHours: empHours,
+            dailyWage: calcDailyWage(empHours),
+            toString() {
+                return '\nDay' + this.dayNum + ' => Working Hours is ' + this.dailyHours +
+                    ' and Wage Earned = ' + this.dailyWage
+            }
+        });
+}
+
+
+console.log('UC- 10 Showing the Daily Hours Worked and Wage Earned: ' + empDailyHoursAndWageArr)
 
 
