@@ -84,6 +84,10 @@ let empDailyHoursAndWageArr = new Array();
 let totalEmpHours = 0;
 let totalWorkingDays = 0;
 
+function totalWages(totalWage, dailyWage) {
+    return totalWage + dailyWage;
+}
+
 while ((totalWorkingDays < WORKING_DAYS_IN_MONTH) && empHours <= MAX_HOURS_IN_MONTH) {
     totalWorkingDays++;
     let employeeCheck = Math.floor(Math.random() * 10 % 3);
@@ -104,4 +108,30 @@ while ((totalWorkingDays < WORKING_DAYS_IN_MONTH) && empHours <= MAX_HOURS_IN_MO
 
 console.log('UC- 10 Showing the Daily Hours Worked and Wage Earned: ' + empDailyHoursAndWageArr)
 
+// UC11A to UC11-D Using Objects along with the arrow functions
 
+let totalWage = empDailyHoursAndWageArr
+                                    .filter(dailyHrsAndWage => dailyHrsAndWage.dailyWage > 0)
+                                    .reduce((totalWages, dailyHrsAndWage) => totalWages += dailyHrsAndWage.dailyWage, 0);
+let totalHourS = empDailyHoursAndWageArr
+                                    .filter(dailyHrsAndWage => dailyHrsAndWage.dailyWage > 0)
+                                    .reduce((totalHours, dailyHrsAndWage) => totalHours += dailyHrsAndWage.dailyHours, 0);
+console.log('UC 11A Total Hours: ' + totalHourS + ' Total Wages: ' + totalWage);
+
+process.stdout.write('UC 11B: Logging Full Working Days');
+	empDailyHoursAndWageArr.filter(dailyHrsAndWage => dailyHrsAndWage.dailyHours == 8)
+		.forEach(dailyHrsAndWage => process.stdout.write(dailyHrsAndWage.toString()));
+
+
+let partWorkingDaysStrArr = empDailyHoursAndWageArr
+                                                .filter(dailyHrsAndWage => dailyHrsAndWage.dailyHours==4)
+                                                .map(dailyHrsAndWage => dailyHrsAndWage.toString());
+console.log("\n UC11C : PartWorkingDaysString "+partWorkingDaysStrArr);
+
+
+let noOfWorkingDaysNums = empDailyHoursAndWageArr
+                                                .filter(empDailyHrsAndWage => empDailyHrsAndWage.dailyHours==0)
+                                                .map(empDailyHrsAndWage => empDailyHrsAndWage.dayNum);
+
+console.log("\n UC11D : nonWorkingDaysNums "+noOfWorkingDaysNums);
+                                             
