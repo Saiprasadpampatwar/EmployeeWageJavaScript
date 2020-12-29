@@ -1,6 +1,7 @@
 class EmployeePayrollData {
     // property
     id;
+    name;
     salary;
     gender;
     startDate;
@@ -13,17 +14,7 @@ class EmployeePayrollData {
       this.startDate = params[4];
     }
   
-    // getter and setter method
-    get name() {
-      return this._name;
-    }
-  
-    set name(name) {
-      let nameRegex = RegExp("^[A-Z]{1}[a-z]{2,}$");
-      if (nameRegex.test(name)) {
-        this._name = name;
-      } else throw "Name is Incorrect!";
-    }
+    
   
     // method
     toString() {
@@ -46,28 +37,28 @@ class EmployeePayrollData {
         ", gender=" +
         this.gender +
         ", startdate=" +
-        this.empDate
+        this.startDate
       );
     }
   }
   
-  let employeePayrollData = new EmployeePayrollData(1, "Mark", 20000);
-  console.log(employeePayrollData.toString());
-  employeePayrollData.id = 0;
-  employeePayrollData.name = "Jeff";
-  console.log(employeePayrollData.toString());
+  let employeePayrollData = new EmployeePayrollData(
+    1,
+    "Mark",
+    20000,
+    "M",
+    new Date()
+  );
   
+ 
   try {
-    //employeePayrollData.name = '';
-    employeePayrollData = new EmployeePayrollData(
-      1,
-      "mark",
-      20000,
-      "M",
-      new Date()
-    );
+    if(employeePayrollData.id<=0) throw "Id is Not correct";
+    let regex = RegExp("^[A-Z]{1}[a-z]{2,}$");
+    if(regex.test(employeePayrollData.name != true)) throw "Name is Incorrect";
     console.log(employeePayrollData.toString());
+    if(employeePayrollData.salary<0) throw "Salary is not correct";
+    if(employeePayrollData.gender!="M" && employeePayrollData.gender!="F") throw "Gender is not correct";
+    if(employeePayrollData.startDate > new Date()) throw "Date is not correct";
   } catch (e) {
     console.error(e);
   }
-  console.log(employeePayrollData.toString());
